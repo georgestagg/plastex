@@ -357,6 +357,18 @@ class char(Command):
     def invoke(self, tex):
         return tex.textTokens(chr(self.parse(tex)['char']))
 
+class lowercase(Command):
+    args = 'text:str'
+    def invoke(self, tex):
+        a = self.parse(tex)
+        return tex.textTokens(a['text'].lower())
+
+class uppercase(Command):
+    args = 'text:str'
+    def invoke(self, tex):
+        a = self.parse(tex)
+        return tex.textTokens(a['text'].upper())
+
 class chardef(Command):
     args = 'command:cs = num:Number'
     def invoke(self, tex):

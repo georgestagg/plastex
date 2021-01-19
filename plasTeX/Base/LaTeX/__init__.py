@@ -67,3 +67,31 @@ class makeatother(Command):
 class makeatletter(Command):
     def invoke(self, tex):
         self.ownerDocument.context.catcode('@', Token.CC_LETTER)
+
+class one_(Command):
+    macroName = '@ne'
+    str = chr(1)
+
+class two_(Command):
+    macroName = 'tw@'
+    str = chr(2)
+
+class three_(Command):
+    macroName = 'thr@@'
+    str = chr(3)
+
+class sixteen_(Command):
+    macroName = 'sixt@@n'
+    str = chr(16)
+
+class xxxii_(Command):
+    macroName = '@xxxii'
+    str = chr(32)
+
+class cclv_(Command):
+    macroName = '@cclv'
+    str = chr(255)
+
+class cclvi_(Command):
+    macroName = '@cclvi'
+    str = chr(256)

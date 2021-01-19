@@ -306,6 +306,11 @@ class TeX(object):
             elif token.nodeType == ELEMENT_NODE:
                 pass
 
+            # If this token is a noexpand, get the next token, but don't
+            # expand it.
+            elif token.macroName == 'noexpand':
+                token = next()
+
             # We need to expand this one
             elif token.macroName is not None:
                 try:

@@ -168,9 +168,11 @@ class def_(DefCommand):
 
 class edef(DefCommand):
     local = True
+    args = 'name:Tok args:Args definition:XTok'
 
 class xdef(DefCommand):
     local = False
+    args = 'name:Tok args:Args definition:XTok'
 
 class gdef(DefCommand):
     local = False
@@ -460,6 +462,16 @@ class vobeyspaces_(Command):
 
 class noligs_(Command):
     macroName = '@noligs'
+
+class gobble_(Command):
+    args = 'a:nox'
+    macroName = "@gobble"
+    def invoke(self, tex):
+        Command.invoke(self,tex)
+        return []
+
+class noexpand(Command):
+    pass
 
 class expandafter(Command):
     def invoke(self, tex):

@@ -44,6 +44,12 @@ class ifundefined_(Command):
             tex.pushTokens(a['true'])
         return []
 
+class ifdefinable_(Command):
+    macroName="@ifdefinable"
+    args = 'name:cs'
+    def invoke(self, tex):
+        self.parse(tex)
+
 class vwritefile_(Command):
     macroName = '@vwritefile'
     args = 'file:nox content:nox'

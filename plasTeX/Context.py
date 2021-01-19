@@ -915,6 +915,27 @@ class Context(object):
                                {'value': plasTeX.count(initial)})
         self.addGlobal(name, newclass)
 
+    def newtoks(self, name, initial=[]):
+        """
+        Create a new token list (like \\toks)
+
+        Required Arguments:
+        name -- name of token list to create
+
+        Keyword Arguments:
+        initial -- value to initialize to
+
+        """
+        # Generate a new toks class
+        macrolog.debug('creating toks %s', name)
+
+        if isinstance(initial, str):
+            initial = list(Tokenizer(initial, self))
+
+        newclass = type(name, (plasTeX.ToksCommand,),
+                               {'value':initial})
+        self.addGlobal(name, newclass)
+
     def newdimen(self, name, initial=0):
         """
         Create a new dimen (like \\newdimen)

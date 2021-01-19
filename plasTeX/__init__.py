@@ -1472,6 +1472,10 @@ class RegisterCommand(ParameterCommand): pass
 
 class CountCommand(RegisterCommand): pass
 
+class ToksCommand(RegisterCommand):
+    args = '= value:nox'
+    value = []
+
 class DimenCommand(RegisterCommand):
     args = '= value:Dimen'
     value = dimen(0)

@@ -30,7 +30,7 @@ from plasTeX.Base.LaTeX.Space import *
 from plasTeX.Base.LaTeX.Tabbing import *
 from plasTeX.Base.LaTeX.Verbatim import *
 
-from plasTeX import Command
+from plasTeX import Command, ToksCommand
 from plasTeX.Tokenizer import Token
 
 class ifundefined_(Command):
@@ -95,3 +95,7 @@ class cclv_(Command):
 class cclvi_(Command):
     macroName = '@cclvi'
     str = chr(256)
+
+class toks_(ToksCommand):
+    macroName = 'toks@'
+    args = 'value:nox'

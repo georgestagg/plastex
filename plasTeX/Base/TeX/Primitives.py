@@ -546,6 +546,16 @@ class the(Command):
     def invoke(self, tex):
         result = Command.invoke(self, tex) 
         name = self.attributes['arg']
+        if name == 'toks':
+            num = tex.readNumber()
+            name = 'toks{}'.format(num)
+        if name in list(self.ownerDocument.context.keys()):
+            reg = self.ownerDocument.context[name]
+            if hasattr(reg,'value'):
+                if isinstance(reg.value,list):
+                    return reg.value
+                else:
+                    return [Other(self.ownerDocument.context[name].value)]
         if name == 'year':
             return [Other(datetime.now().strftime('%Y'))]
         elif name == 'month':

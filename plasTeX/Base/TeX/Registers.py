@@ -10,14 +10,21 @@ from plasTeX import DimenCommand, GlueCommand
 class dimen_(Command):
     macroName = 'dimen'
 
-class toks(Command):
-    pass
-
 class skip(Command):
     pass
 
 class box(Command):
     pass
+
+class toks(Command):
+    args = 'num:number = value:nox'
+    def invoke(self,tex):
+        a = self.parse(tex)
+        name = 'toks{}'.format(a['num'])
+        if name not in list(self.ownerDocument.context.keys()):
+            self.ownerDocument.context.newtoks(name)
+        self.ownerDocument.context[name].value = a['value']
+        return [ ]
 
 class TeXCount(Command):
     macroName = 'count'
@@ -47,6 +54,8 @@ class newbox(Command):
 
 class newtoks(Command):
     args = 'name:cs'
+    def invoke(self, tex):
+        self.ownerDocument.context.newtoks(self.parse(tex)['name'])
 
 class newhelp(Command):
     args = 'name:cs value'
